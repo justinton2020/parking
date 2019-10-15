@@ -12,6 +12,7 @@ Checkout 3
 Car_2
 Car_4
 Car_6
-Parking 2
+Parking 3
+Car_4
 Car_6
 Car_7
