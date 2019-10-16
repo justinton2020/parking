@@ -13,3 +13,4 @@ Program OUTPUT:
 It will state if Car is successfully parked or that Car is already parked or Gagare is full.
 
 - Same for checkout process.
+- Run a income report after each test file.
