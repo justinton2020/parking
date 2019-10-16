@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.File;
-
+import java.text.*;
 
 // A UnitTest class has function testFile to read from text file and run 
 class UnitTest {
@@ -39,6 +39,7 @@ class UnitTest {
             }
         }
         sc.close();
+        garage.runReport();
     }
 }
 
@@ -86,17 +87,23 @@ class Car {
     }
 }
 public class Parking {
+    static float parkingFee = 2.50f;
     // the max number of lots of Parking lot can hold
     private int capacity;
     // the current lots are being used
     private int occupied;
     // a map list with key is name of car, value is Car object
     private Map<String, Car> listCar;
+    int numberCarOfTheDay;
+    int numberCarNotParked;
+    
 
     // construct a Parking garage with capacity
     Parking(int num){
         capacity = num;
         occupied = 0;
+        numberCarOfTheDay = 0;
+        numberCarNotParked = 0;
         // instantiate a list of Parked Car
         listCar = new HashMap();
     }
@@ -111,6 +118,7 @@ public class Parking {
         // condtion if garage is not full then continue parking process
         if (!isFull()){
         occupied++;
+        
         Date arrivalTime = new Date();
         // store car id in the list of parked car
         listCar.put(unit.getId(), unit);
@@ -120,8 +128,10 @@ public class Parking {
         System.out.println("The garage has " + (capacity - occupied) + " slots left!\n");
         }
         // if garage is full , output message for user
-        else 
+        else {
             System.out.println("The " + unit.getId() + " can't park because Parking Lot is full\n");
+            numberCarNotParked++;
+        }
     }
 
     // method to checkout car
@@ -139,6 +149,7 @@ public class Parking {
         unit.payTicket();
         // decrease occupied space by 1
         occupied--;
+        numberCarOfTheDay++;
         System.out.println("The garage has " + (capacity - occupied) + " slots left!\n");
     }
 
@@ -150,14 +161,29 @@ public class Parking {
             return false;
     }
 
+    public void runReport(){
+        NumberFormat usFormat = NumberFormat.getCurrencyInstance(Locale.US);
+
+        System.out.println("===========REPORT==================");
+        System.out.println("The number of Checkouted Car  -  Total Income" );
+        System.out.println("Cars: " + numberCarOfTheDay + "     -     "+ usFormat.format(numberCarOfTheDay *parkingFee));
+        System.out.println("================================");
+        System.out.println("Number of Cars are still parking: " + occupied);
+        System.out.println("Number of Car didn't park because of full slot: " + numberCarNotParked);
+        System.out.println("=======END REPORT==================");
+    }
     public static void main(String[] args) throws Exception
     {
       
        // Create a UnitTest object );
         UnitTest runTest = new UnitTest();
         // use testFile method of UnitTest class with (a Test filename)
+        System.out.println("=============Test 1================");
         runTest.testFile("Test1.txt");
-        // runTest.testFile("Test2.txt");
+        System.out.println("================================");
+        System.out.println("================================");
+        System.out.println("=============Test 2================");
+        runTest.testFile("Test2.txt");
         // runTest.testFile("Test3.txt");
         // runTest.testFile("Test4.txt");
         // runTest.testFile("Test5.txt");
