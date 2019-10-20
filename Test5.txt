@@ -1,0 +1,29 @@
+20
+Parking 5
+Car_1
+Car_2
+Car_4
+Car_3
+Car_5
+Parking 3
+Car_2
+Car_4
+Car_6
+Checkout 5
+Car_6
+Car_7
+Car_8
+Car_9
+Car_4
+Parking 6
+Car_10
+Car_11
+Car_12
+Car_1
+Car_3
+Car_4
+Checkout 4
+Car_1
+Car_4
+Car_10
+Car_11

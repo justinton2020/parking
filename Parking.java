@@ -6,40 +6,46 @@ import java.text.*;
 class UnitTest {
     public void testFile(String fileTest) throws Exception {
         // block of code handle reading from a text file
-        File  fl = new File(fileTest);
-        Scanner sc = new Scanner(fl); 
-        // read first line of text file
-        int ca = sc.nextInt();
-        System.out.println("Create a garage with capacity of " + ca + " slots!");
-        Parking garage = new Parking(ca); 
-        // run a while loop to read all the lines until end of file
-        while (sc.hasNext()){
-            String str = sc.next();
-         //   System.out.println("str " + str);
-            int num = sc.nextInt();
-         //   System.out.println(num);
+        try{
+            File  fl = new File(fileTest);
+            Scanner sc = new Scanner(fl); 
+            // read first line of text file
+            int ca = sc.nextInt();
+            System.out.println("Create a garage with capacity of " + ca + " slots!");
+            Parking garage = new Parking(ca); 
+            // run a while loop to read all the lines until end of file
+            while (sc.hasNext()){
+                String str = sc.next();
+            //   System.out.println("str " + str);
+                int num = sc.nextInt();
+            //   System.out.println(num);
 
-            // check command whether is Parking or checkout a car.
-            if (str.compareTo("Parking") == 0 ){
-                for (int i = 0; i < num; i++){
-                    String a = sc.next();
-                    System.out.println("Parking " + a);
-                    Car c = new Car(a);
-                    // garage park the car
-                    garage.parkCar(c);
+                // check command whether is Parking or checkout a car.
+                if (str.compareTo("Parking") == 0 ){
+                    for (int i = 0; i < num; i++){
+                        String a = sc.next();
+                        System.out.println("Parking " + a);
+                        Car c = new Car(a);
+                        // garage park the car
+                        garage.parkCar(c);
+                    }
+                }
+                if (str.compareTo("Checkout") == 0 ){
+                    for (int i = 0; i < num; i++){
+                        String b = sc.next();
+                        System.out.println("Checkout " + b);
+                        // garage checkout a car
+                        garage.checkoutCar(b);
+                    }
                 }
             }
-            if (str.compareTo("Checkout") == 0 ){
-                for (int i = 0; i < num; i++){
-                    String b = sc.next();
-                    System.out.println("Checkout " + b);
-                    // garage checkout a car
-                    garage.checkoutCar(b);
-                }
-            }
+            sc.close();
+            garage.runReport();
         }
-        sc.close();
-        garage.runReport();
+        catch (Exception e) 
+        {
+            System.out.println("File not found");
+        }
     }
 }
 
@@ -184,9 +190,18 @@ public class Parking {
         System.out.println("================================");
         System.out.println("=============Test 2================");
         runTest.testFile("Test2.txt");
-        // runTest.testFile("Test3.txt");
-        // runTest.testFile("Test4.txt");
-        // runTest.testFile("Test5.txt");
+        System.out.println("================================");
+        System.out.println("================================");
+        System.out.println("=============Test 3================");
+        runTest.testFile("Test3.txt");
+        System.out.println("================================");
+        System.out.println("================================");
+        System.out.println("=============Test 4================");
+        runTest.testFile("Test4.txt");
+        System.out.println("================================");
+        System.out.println("================================");
+        System.out.println("=============Test 5================");
+        runTest.testFile("Test5.txt");
         
     }
 }
