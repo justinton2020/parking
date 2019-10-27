@@ -1,29 +1,38 @@
-20
-Parking 5
-Car_1
-Car_2
-Car_4
-Car_3
-Car_5
-Parking 3
-Car_2
-Car_4
-Car_6
-Checkout 5
-Car_6
-Car_7
-Car_8
-Car_9
-Car_4
+5
+1 A 2.2
+2 B 2
+1 C 1.5
+2 D 1.8
+5 E 1.0
+Parking 5 
+Car_1 A
+Car_2 B
+Car_4 C
+Car_3 A
+Car_5 D
 Parking 6
-Car_10
-Car_11
-Car_12
-Car_1
-Car_3
+Car_6 B
+Car_7 C
+Car_5 D
+Car_8 D
+Car_9 E
+Car_10 E
+Checkout 7
+Car_2
 Car_4
-Checkout 4
-Car_1
-Car_4
-Car_10
-Car_11
+Car_6
+Car_5 
+Car_8 
+Car_9 
+Car_10 
+Parking 6
+Car_4 C
+Car_6 B
+Car_7 C
+Car_1 A
+Car_8 D
+Car_9 E
+Checkout 3
+Car_2
+Car_7
+Car_9 

@@ -1,4 +1,3 @@
-package com.justin;
 import java.util.*;
 import java.io.File;
 import java.text.*;
@@ -14,7 +13,7 @@ class UnitTest {
             // read first line of text file is number of parking create
             Map<String, Car> listOfCar = new HashMap<String, Car>();
             int n = sc.nextInt();
-            List<Parking> listOfParking = new ArrayList<Parking>();
+            List<Parking> listOfParking = new ArrayList();
             for (int i = 0; i < n; i++){
                 int capa = sc.nextInt();
                 char groupType = sc.next().charAt(0);
@@ -40,13 +39,12 @@ class UnitTest {
                         Car c = new Car(a, type);
                         // garage park the car
                         c.parkMyCar(listOfParking);
-                        
-                        if (!listOfCar.containsKey(a) && c.isParkedYet())
+                        if (!listOfCar.containsKey(a))
                             listOfCar.put(a, c);
-                        // if (c.isParkedYet() && listOfCar.containsKey(a)){
-                        //     listOfCar.remove(a);
-                        //     listOfCar.put(a, c);
-                        // }
+                        if (c.isParkedYet() && listOfCar.containsKey(a)){
+                            listOfCar.remove(a);
+                            listOfCar.put(a, c);
+                        }
                     }
                 }
                 if (str.compareTo("Checkout") == 0 ){
@@ -60,7 +58,7 @@ class UnitTest {
                             listOfCar.remove(b);
                         }
                         else 
-                            System.out.println("The " + b + " is not parked yet!\n");
+                            System.out.println("The car " + b + " is not parked yet!");
                         
                     }
                 }
@@ -103,17 +101,9 @@ class Car {
     public void parkMyCar(List<Parking> garage){
         int min = 1000;
         Map<Integer, Parking> list = new HashMap<Integer, Parking>();
-       
+
         // a loop to check space of each parking. if space > 0 it will add to a list and record the smallest space.
         // if we have multiple min space it will add the first parking in the list
-        for (Parking p : garage){
-            if (p.isParked(this))
-                {
-                    System.out.println("The " + carId + " already parked at " + p.getName() + "\n");
-                    return;
-                }
-        }
-      
         for (int i = 0; i < garage.size() ; i++){
             Parking g = garage.get(i);
             if (!g.isParked(this))
@@ -126,8 +116,13 @@ class Car {
                         list.put(min, g);
                 }
             }
+            else
+            {
+                System.out.println("The " + carId + " already parked at " + g.getName());
+                return;
+                
+            }
         }
-         
         // if list is empty that means no parking space left
         if (list.isEmpty())
         {
@@ -138,10 +133,10 @@ class Car {
         {
            
             place = list.get(min);
-            System.out.println("the min space parking " + place.getName() );
+            System.out.println("the min space parking " + place.getName());
+            place.parkCar(this);
             Date arrivalTime = new Date();
             parking(arrivalTime);
-            place.parkCar(this);
         
         }
         return;
@@ -149,9 +144,16 @@ class Car {
 
     public void checkOutMyCar(){
         System.out.println("Parked at " + place.getName());
-       
-        place.checkoutCar(carId);
-       
+        if (ticket == true){
+           
+            place.checkoutCar(carId);
+           
+        }
+        else
+        {
+            System.out.println(ticket);
+            System.out.println("The " + carId + " is not parked yet!\n");
+        }
         return;
     }
 
@@ -214,7 +216,7 @@ public class Parking {
         this.discountFee = discount;
         numberCarOfTheDay = 0;
         // instantiate a list of Parked Car
-        listCar = new HashMap<String, Car>();
+        listCar = new HashMap();
     }
 
     public char getName(){
@@ -303,22 +305,22 @@ public class Parking {
         // use testFile method of UnitTest class with (a Test filename)
         System.out.println("=============Test 1================");
         runTest.testFile("Test1.txt");
-        System.out.println("================================");
-        System.out.println("================================");
-        System.out.println("=============Test 2================");
-        runTest.testFile("Test2.txt");
-        System.out.println("================================");
-        System.out.println("================================");
-        System.out.println("=============Test 3================");
-        runTest.testFile("Test3.txt");
-        System.out.println("================================");
-        System.out.println("================================");
-        System.out.println("=============Test 4================");
-        runTest.testFile("Test4.txt");
-        System.out.println("================================");
-        System.out.println("================================");
-        System.out.println("=============Test 5================");
-        runTest.testFile("Test5.txt");
+        // System.out.println("================================");
+        // System.out.println("================================");
+        // System.out.println("=============Test 2================");
+        // runTest.testFile("Test2.txt");
+        // System.out.println("================================");
+        // System.out.println("================================");
+        // System.out.println("=============Test 3================");
+        // runTest.testFile("Test3.txt");
+        // System.out.println("================================");
+        // System.out.println("================================");
+        // System.out.println("=============Test 4================");
+        // runTest.testFile("Test4.txt");
+        // System.out.println("================================");
+        // System.out.println("================================");
+        // System.out.println("=============Test 5================");
+        // runTest.testFile("Test5.txt");
         
     }
 }
