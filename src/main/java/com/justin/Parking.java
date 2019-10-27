@@ -1,5 +1,4 @@
 
-
 /**
  * Hello world!
  */
@@ -18,7 +17,7 @@ class UnitTest {
             // read first line of text file is number of parking create
             Map<String, Car> listOfCar = new HashMap<String, Car>();
             int n = sc.nextInt();
-            List<Parking> listOfParking = new ArrayList();;
+            List<Parking> listOfParking = new ArrayList();
             for (int i = 0; i < n; i++){
                 int capa = sc.nextInt();
                 char groupType = sc.next().charAt(0);
